@@ -12,7 +12,7 @@ typedef struct day {
 	int daytemp[2] = { 0 };
 	int feelstemp[2] = { 0 };
 	char osadki[SIZE] = { 0 };
-	int windspeed[2] = { -1, -1	};
+	int windspeed[2] = { -1, -1 };
 	char windway[SIZE] = { 0 };
 	int poriv[2] = { -1, -1 };
 	int pressure = 0;
@@ -28,7 +28,40 @@ int main() {
 	FILE* input;
 	input = fopen("input.txt", "rt");
 	char str[SIZE] = { 0 };
-	char c;
-	fscanf(input, "%s.", str);
-	printf("%s", str);
+	char c='0';
+	while (c!=EOF && c!=' ') {
+		fscanf(input, "%d.%d.%d\t%d..%d\t%d..%d\t%d..%d\t%s\t", &days[cur].date[0],
+			&days[cur].date[1],
+			&days[cur].date[2],
+			&days[cur].nighttemp[0],
+			&days[cur].nighttemp[1],
+			&days[cur].daytemp[0],
+			&days[cur].daytemp[1],
+			&days[cur].feelstemp[0],
+			&days[cur].feelstemp[1],
+			&days[cur].osadki);
+		fscanf(input, "%s", &str);
+		if (strlen(str) == 3) {
+			sscanf(str, "%d-%d", &days[cur].windspeed[0], &days[cur].windspeed[1]);
+		}
+		else {
+			sscanf(str, "%d", &days[cur].windspeed[0]);
+		}
+		fscanf(input, "%s", &days[cur].windway);
+		fscanf(input, "%s", &str);
+		if (strlen(str) == 3) {
+			sscanf(str, "%d-%d", &days[cur].poriv[0], &days[cur].poriv[1]);
+		}
+		else {
+			sscanf(str, "%d", &days[cur].poriv[0]);
+		}
+		fscanf(input, "%d", &days[cur].pressure);
+		c = fgetc(input);
+		if (c == ' ') {
+			fscanf(input, "%s", &days[cur].fact);
+		}
+		cur++;
+	}
+
+	fclose(input);
 }
