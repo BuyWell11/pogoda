@@ -1,0 +1,34 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <windows.h>
+#include <iostream>
+#include <string.h>
+#define SIZE 50
+using namespace std;
+
+typedef struct day {
+	int date[3] = { 0 };
+	int nighttemp[2] = { 0 };
+	int daytemp[2] = { 0 };
+	int feelstemp[2] = { 0 };
+	char osadki[SIZE] = { 0 };
+	int windspeed[2] = { -1, -1	};
+	char windway[SIZE] = { 0 };
+	int poriv[2] = { -1, -1 };
+	int pressure = 0;
+	char fact[SIZE] = { 0 };
+}weather;
+
+int main() {
+	setlocale(LC_ALL, "Russian");
+	SetConsoleOutputCP(CP_UTF8);
+	printf("Ща запущю погодь...\n");
+	weather days[SIZE];
+	int cur = 0;
+	FILE* input;
+	input = fopen("input.txt", "rt");
+	char str[SIZE] = { 0 };
+	char c;
+	fscanf(input, "%s.", str);
+	printf("%s", str);
+}
