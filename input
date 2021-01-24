@@ -1,10 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <windows.h>
-#include <iostream>
+#include <locale.h>
 #include <string.h>
 #define SIZE 50
-using namespace std;
 
 typedef struct day {
 	int date[3] = { 0 };
@@ -17,11 +16,12 @@ typedef struct day {
 	int poriv[2] = { -1, -1 };
 	int pressure = 0;
 	char fact[SIZE] = { 0 };
+	char time_of_year[SIZE] = { 0 };
+	char month[SIZE] = { 0 };
 }weather;
 
 int main() {
-	setlocale(LC_ALL, "Russian");
-	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "russian_russia.1251");
 	printf("Ща запущю погодь...\n");
 	weather days[SIZE];
 	int cur = 0;
@@ -59,6 +59,56 @@ int main() {
 		c = fgetc(input);
 		if (c == ' ') {
 			fscanf(input, "%s", &days[cur].fact);
+		}
+		switch (days[cur].date[1]) {
+		case 1:
+			strncat(days[cur].month, "январь", SIZE);
+			strncat(days[cur].time_of_year, "зима", SIZE);
+			break;
+		case 2:
+			strncat(days[cur].month, "февраль", SIZE);
+			strncat(days[cur].time_of_year, "зима", SIZE);
+			break;
+		case 3:
+			strncat(days[cur].month, "март", SIZE);
+			strncat(days[cur].time_of_year, "весна", SIZE);
+			break;
+		case 4:
+			strncat(days[cur].month, "апрель", SIZE);
+			strncat(days[cur].time_of_year, "весна", SIZE);
+			break;
+		case 5:
+			strncat(days[cur].month, "май", SIZE);
+			strncat(days[cur].time_of_year, "весна", SIZE);
+			break;
+		case 6:
+			strncat(days[cur].month, "июнь", SIZE);
+			strncat(days[cur].time_of_year, "лето", SIZE);
+			break;
+		case 7:
+			strncat(days[cur].month, "июль", SIZE);
+			strncat(days[cur].time_of_year, "лето", SIZE);
+			break;
+		case 8:
+			strncat(days[cur].month, "август", SIZE);
+			strncat(days[cur].time_of_year, "лето", SIZE);
+			break;
+		case 9:
+			strncat(days[cur].month, "сентябрь", SIZE);
+			strncat(days[cur].time_of_year, "осень", SIZE);
+			break;
+		case 10:
+			strncat(days[cur].month, "октябрь", SIZE);
+			strncat(days[cur].time_of_year, "осень", SIZE);
+			break;
+		case 11:
+			strncat(days[cur].month, "ноябрь", SIZE);
+			strncat(days[cur].time_of_year, "осень", SIZE);
+			break;
+		case 12:
+			strncat(days[cur].month, "декабрь", SIZE);
+			strncat(days[cur].time_of_year, "зима", SIZE);
+			break;
 		}
 		cur++;
 	}
