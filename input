@@ -5,6 +5,26 @@
 #include <string.h>
 #define SIZE 50
 
+typedef struct string_ {
+	char s[SIZE] = { 0 };
+}strings;
+
+typedef struct typefrases {
+	strings connection[SIZE];
+	strings danger[SIZE];
+	strings hot[SIZE];
+	strings cold[SIZE];
+	strings nofall[SIZE];
+	strings fall[SIZE];
+	strings snow[SIZE];
+	strings rain[SIZE];
+	strings nowind[SIZE];
+	strings wind[SIZE];
+	strings strongwind[SIZE];
+	strings lowdav[SIZE];
+	strings highdav[SIZE];
+}fras;
+
 typedef struct day {
 	int date[3] = { 0 };
 	int nighttemp[2] = { 0 };
@@ -21,12 +41,15 @@ typedef struct day {
 }weather;
 
 int main() {
-	setlocale(LC_ALL, "russian_russia.1251");
+	setlocale(LC_ALL, "RUS");
 	printf("Ща запущю погодь...\n");
 	weather days[SIZE];
+	fras frase;
 	int cur = 0;
 	FILE* input;
+	FILE* frases;
 	input = fopen("input.txt", "rt");
+	frases = fopen("frases.txt", "rt");
 	char str[SIZE] = { 0 };
 	char c='0';
 	while (c!=EOF && c!=' ') {
@@ -112,6 +135,154 @@ int main() {
 		}
 		cur++;
 	}
-
+	c = '0';
+	cur = 0;
+	while (!feof(frases)) {
+		fgets(str, SIZE, frases);
+		if (strcmp(str, "-connection\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.connection[cur].s, str, SIZE);
+				printf("%s\n", frase.connection[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-danger\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.danger[cur].s, str, SIZE);
+				printf("%s\n", frase.danger[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-hot\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.hot[cur].s, str, SIZE);
+				printf("%s\n", frase.hot[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-cold\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.cold[cur].s, str, SIZE);
+				printf("%s\n", frase.cold[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-no fall\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.nofall[cur].s, str, SIZE);
+				printf("%s\n", frase.nofall[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-fall\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.fall[cur].s, str, SIZE);
+				printf("%s\n", frase.fall[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-snow\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.snow[cur].s, str, SIZE);
+				printf("%s\n", frase.snow[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-rain\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.rain[cur].s, str, SIZE);
+				printf("%s\n", frase.rain[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-no wind\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.nowind[cur].s, str, SIZE);
+				printf("%s\n", frase.nowind[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-wind\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.wind[cur].s, str, SIZE);
+				printf("%s\n", frase.wind[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-strong wind\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.strongwind[cur].s, str, SIZE);
+				printf("%s\n", frase.strongwind[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-low dav\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.lowdav[cur].s, str, SIZE);
+				printf("%s\n", frase.lowdav[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+		if (strcmp(str, "-high dav\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0 && strcmp(str, frase.highdav[cur-1].s) != 0) {
+				str[strlen(str)-1] = '\0';
+				strncat(frase.highdav[cur].s, str, SIZE);
+				printf("%s\n", frase.highdav[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			cur = 0;
+		}
+	}
 	fclose(input);
+	fclose(frases);
 }
