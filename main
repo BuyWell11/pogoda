@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <locale.h>
 #include <string.h>
+#include <time.h>
 #define SIZE 150
 
 typedef struct string_ {
@@ -34,6 +35,16 @@ typedef struct typefrases {
 	int cur_strong = 0;
 	strings lowpressure[SIZE];
 	int cur_low = 0;
+	strings greeting[SIZE];
+	int cur_greet = 0;
+	strings place[SIZE];
+	int cur_place = 0;
+	strings when[SIZE];
+	int cur_when = 0;
+	strings unions[SIZE];
+	int cur_union = 0;
+	strings verbs[SIZE];
+	int cur_verb = 0;
 	strings highpressure[SIZE];
 	int cur_high = 0;
 }fras;
@@ -43,32 +54,394 @@ typedef struct day {
 	int nighttemp[2] = { 0 };
 	int daytemp[2] = { 0 };
 	int feelstemp[2] = { 0 };
-	char osadki[20] = { 0 };
-	char windspeed[20];
+	char fall[20] = { 0 };
+	int windspeed[2] = { -1, -1 };
 	char windway[20];
-	char poriv[20];
+	int gust[2] = { -1, -1 };
 	int pressure = 0;
 	char fact[20] = { 0 };
 	char time_of_year[20] = { 0 };
 	char month[20] = { 0 };
 }weather;
 
+typedef struct rates {
+	int coldTempRate = 0; // 5 - death, 4 - bad, 3 - oh, 2 - ok, 1 - nice
+	int hotTempRate = 0; // 5 - death, 4 - bad, 3 - oh, 2 - ok, 1 - nice
+	int windSpeedRate = 0; // 5 - death, 4 - bad, 3 - oh, 2 - ok, 1 - nice
+	int pressureRate; // 0 - low, 1 - ok, 2 - high
+} rate;
+
+void makesent(weather days[], rate rates[], int dayscount) {
+	int max = 0;
+	char maininf[SIZE] = { 0 };
+	if (rates[dayscount].coldTempRate > max) {
+		max = rates[dayscount].coldTempRate;
+		strcpy(maininf, "cold");
+	}
+	if (rates[dayscount].hotTempRate > max) {
+		max = rates[dayscount].hotTempRate;
+		strcpy(maininf, "hot");
+	}
+	if (strcmp(days[dayscount].fall, "нет")) {
+		switch (max) {
+		case 1: 
+		case 2:
+			if (strlen(days[dayscount].fact) > 0) {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			else {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			break;
+		case 3:
+			if (strlen(days[dayscount].fact) > 0) {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			else {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			break;
+		case 4: 
+		case 5:
+			if (strlen(days[dayscount].fact) > 0) {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			else {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			break;
+		}
+	}
+	else {
+		switch (max) {
+		case 1:
+		case 2:
+			if (strlen(days[dayscount].fact) > 0) {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			else {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			break;
+		case 3:
+			if (strlen(days[dayscount].fact) > 0) {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			else {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			break;
+		case 4:
+		case 5:
+			if (strlen(days[dayscount].fact) > 0) {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			else {
+				if (strcmp(maininf, "cold")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+				if (strcmp(maininf, "hot")) {
+					if (rates[dayscount].windSpeedRate <= 2) {
+
+					}
+					if (rates[dayscount].windSpeedRate == 3) {
+
+					}
+					if (rates[dayscount].windSpeedRate >= 4) {
+
+					}
+				}
+			}
+			break;
+		}
+	}
+}
+
 int main() {
 	setlocale(LC_ALL, "RUS");
 	printf("Ща запущю погодь...\n");
+	srand(time(NULL));
 	weather days[SIZE];
 	fras frase;
-	int cur = 0;
+	rate rates[SIZE];
+	int cur = 0, dayscur = 0;
 	FILE* input;
 	FILE* frases;
 	input = fopen("input.txt", "rt");
 	frases = fopen("frases.txt", "rt");
 	char str[SIZE] = { 0 };
-	while (!feof(input)) {
-		fgets(str, SIZE, input);
-		sscanf(str, "%d.%d.%d %d..%d %d..%d %d..%d %s %s %s %s %d %s", &days[cur].date[0], &days[cur].date[1], &days[cur].date[2],
-			&days[cur].nighttemp[0], &days[cur].nighttemp[1], &days[cur].daytemp[0], &days[cur].daytemp[1], &days[cur].feelstemp[0], &days[cur].feelstemp[1],
-			days[cur].osadki, days[cur].windspeed, days[cur].windway, days[cur].poriv, &days[cur].pressure, days[cur].fact);
+	char c = '0';
+	while (c != EOF) {
+		fscanf(input, "%d.%d.%d\t%d..%d\t%d..%d\t%d..%d\t%s\t", &days[cur].date[0],
+			&days[cur].date[1],
+			&days[cur].date[2],
+			&days[cur].nighttemp[0],
+			&days[cur].nighttemp[1],
+			&days[cur].daytemp[0],
+			&days[cur].daytemp[1],
+			&days[cur].feelstemp[0],
+			&days[cur].feelstemp[1],
+			&days[cur].fall);
+		fscanf(input, "%s", &str);
+		if (strlen(str) == 3) {
+			sscanf(str, "%d-%d", &days[cur].windspeed[0], &days[cur].windspeed[1]);
+		}
+		else {
+			sscanf(str, "%d", &days[cur].windspeed[0]);
+		}
+		fscanf(input, "%s", &days[cur].windway);
+		fscanf(input, "%s", &str);
+		if (strlen(str) == 3) {
+			sscanf(str, "%d-%d", &days[cur].gust[0], &days[cur].gust[1]);
+		}
+		else {
+			sscanf(str, "%d", &days[cur].gust[0]);
+		}
+		fscanf(input, "%d", &days[cur].pressure);
+		c = fgetc(input);
+		if (c == ' ') {
+			fscanf(input, "%s", &days[cur].fact);
+			c = fgetc(input);
+		}
 		switch (days[cur].date[1]) {
 		case 1:
 			strncat(days[cur].month, "января", SIZE);
@@ -121,6 +494,7 @@ int main() {
 		}
 		cur++;
 	}
+	dayscur = cur;
 	cur = 0;
 	while (!feof(frases)) {
 		fgets(str, SIZE, frases);
@@ -145,7 +519,7 @@ int main() {
 				cur++;
 				fgets(str, SIZE, frases);
 			}
-			frase.cur_den = cur;
+			frase.cur_dan = cur;
 			cur = 0;
 		}
 		if (strcmp(str, "-hot\n") == 0) {
@@ -268,6 +642,66 @@ int main() {
 			frase.cur_low = cur;
 			cur = 0;
 		}
+		if (strcmp(str, "-greeting\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str) - 1] = '\0';
+				strncat(frase.greeting[cur].s, str, SIZE);
+				printf("%s\n", frase.greeting[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			frase.cur_greet = cur;
+			cur = 0;
+		}
+		if (strcmp(str, "-place\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str) - 1] = '\0';
+				strncat(frase.place[cur].s, str, SIZE);
+				printf("%s\n", frase.place[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			frase.cur_place = cur;
+			cur = 0;
+		}
+		if (strcmp(str, "-when\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str) - 1] = '\0';
+				strncat(frase.when[cur].s, str, SIZE);
+				printf("%s\n", frase.when[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			frase.cur_when = cur;
+			cur = 0;
+		}
+		if (strcmp(str, "-unions\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str) - 1] = '\0';
+				strncat(frase.unions[cur].s, str, SIZE);
+				printf("%s\n", frase.unions[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			frase.cur_union = cur;
+			cur = 0;
+		}
+		if (strcmp(str, "-verbs\n") == 0) {
+			fgets(str, SIZE, frases);
+			while (strcmp(str, "\n") != 0) {
+				str[strlen(str) - 1] = '\0';
+				strncat(frase.verbs[cur].s, str, SIZE);
+				printf("%s\n", frase.unions[cur].s);
+				cur++;
+				fgets(str, SIZE, frases);
+			}
+			frase.cur_verb = cur;
+			cur = 0;
+		}
 		if (strcmp(str, "-high pressure\n") == 0) {
 			fgets(str, SIZE, frases);
 			while (strcmp(str, "\n") != 0 && strcmp(str, frase.highpressure[cur - 1].s) != 0) {
@@ -283,4 +717,31 @@ int main() {
 	}
 	fclose(input);
 	fclose(frases);
+	for (int dayCount = 0; dayCount < dayscur; ++dayCount)
+	{
+		// TEMP RATE
+		if (days[dayCount].daytemp[1] >= 30) rates[dayCount].hotTempRate = 5;
+		if (days[dayCount].daytemp[1] >= 20 && days[dayCount].daytemp[1] <= 29) rates[dayCount].hotTempRate = 4;
+		if (days[dayCount].daytemp[1] >= 10 && days[dayCount].daytemp[1] <= 19) rates[dayCount].hotTempRate = 3;
+		if (days[dayCount].daytemp[1] >= 5 && days[dayCount].daytemp[1] <= 9) rates[dayCount].hotTempRate = 2;
+		if (days[dayCount].daytemp[1] == 0) rates[dayCount].hotTempRate = 1;
+
+		if (days[dayCount].daytemp[1] <= 30) rates[dayCount].coldTempRate = 5;
+		if (days[dayCount].daytemp[1] >= -29 && days[dayCount].daytemp[1] <= -20) rates[dayCount].coldTempRate = 4;
+		if (days[dayCount].daytemp[1] >= -19 && days[dayCount].daytemp[1] <= -10) rates[dayCount].coldTempRate = 3;
+		if (days[dayCount].daytemp[1] >= -9 && days[dayCount].daytemp[1] <= -5) rates[dayCount].coldTempRate = 2;
+		if (days[dayCount].daytemp[1] == 0) rates[dayCount].coldTempRate = 1;
+
+		// WIND RATE
+		if (days[dayCount].windspeed[1] >= 33) rates[dayCount].windSpeedRate = 5;
+		if (days[dayCount].windspeed[1] <= 32 && days[dayCount].windspeed[1] >= 25) rates[dayCount].windSpeedRate = 4;
+		if (days[dayCount].windspeed[1] <= 24 && days[dayCount].windspeed[1] >= 15) rates[dayCount].windSpeedRate = 3;
+		if (days[dayCount].windspeed[1] <= 14 && days[dayCount].windspeed[1] >= 6) rates[dayCount].windSpeedRate = 2;
+		if (days[dayCount].windspeed[1] <= 5 && days[dayCount].windspeed[1] >= 0) rates[dayCount].windSpeedRate = 1;
+
+		// PRESSURE RATE
+		if (days[dayCount].pressure <= 740) rates[dayCount].pressureRate = 0;
+		if (days[dayCount].pressure <= 759 && days[dayCount].pressure >= 741) rates[dayCount].pressureRate = 1;
+		if (days[dayCount].pressure >= 760) rates[dayCount].pressureRate = 2;
+	}
 }
